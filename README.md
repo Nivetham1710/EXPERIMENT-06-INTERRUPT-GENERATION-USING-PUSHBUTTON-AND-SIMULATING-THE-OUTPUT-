@@ -45,8 +45,6 @@ Now each of these lines EXTI0-EXTI15 can be used to trigger an interrupt on diff
 
 4.select the program name 
 ![image](https://user-images.githubusercontent.com/36288975/226189316-09832a30-4d1a-4d4f-b8ad-2dc28f137711.png)
-
-
 5. corresponding ioc file will be generated automatically 
 ![image](https://user-images.githubusercontent.com/36288975/226189378-3abbdee2-0df6-470f-a3cd-79c74e3d3ad8.png)
 
@@ -69,7 +67,6 @@ Now each of these lines EXTI0-EXTI15 can be used to trigger an interrupt on diff
 11. click on debug option 
 ![image](https://user-images.githubusercontent.com/36288975/226189625-37daa9a3-62e9-42b5-a5ce-2ac63345905b.png)
 
-
 12.  Creating Proteus project and running the simulation
 We are now at the last part of step by step guide on how to simulate STM32 project in Proteus.
 
@@ -85,18 +82,46 @@ https://engineeringxpert.com/wp-content/uploads/2022/04/26.png
 
 ![image](https://user-images.githubusercontent.com/36288975/233856904-99eb708a-c907-4595-9025-c9dbd89b8879.png)
 
-
-  
-
 ## STM 32 CUBE PROGRAM :
+~~~
+DEVELOPED BY:Nivetha M
+REG N0:212221240034
+
+#include "main.h"
+#include "stdio.h"
+
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+
+int main(void)
+{
+  
+  HAL_Init();
+  SystemClock_Config();
+  MX_GPIO_Init();
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+	if((GPIO_Pin==GPIO_PIN_1))
+	{
+		HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_0);
+	}
+}
+
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET);
+}
+~~~
 
 
+## Output screen shots of proteus:
+LED OFF:
+![output](./r1.png)
 
-## Output screen shots of proteus  :
- 
+LED ON:
+![output](./r2.png)
  
  ## CIRCUIT DIAGRAM (EXPORT THE GRAPHICS TO PDF AND ADD THE SCREEN SHOT HERE): 
- 
+![output](./r3.png)
  
 ## Result :
 Interfacing a push button and interrupt genrateion is simulated using proteus 
